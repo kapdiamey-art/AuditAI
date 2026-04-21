@@ -1,6 +1,15 @@
 export type Lang = "en" | "hi" | "kok";
 
-export const translations = {
+type Dict = {
+  dashboard: string; transactions: string; anomalies: string; reports: string;
+  insights: string; settings: string; search: string; totalTx: string;
+  anomDetected: string; riskScore: string; finVolume: string; txVolume: string;
+  anomFreq: string; spendCat: string; liveFeed: string; aiInsights: string;
+  auditReport: string; download: string; review: string; ignore: string;
+  escalate: string; confidence: string; askAi: string; risk: string;
+};
+
+export const translations: Record<Lang, Dict> = {
   en: {
     dashboard: "Dashboard",
     transactions: "Transactions",
@@ -79,6 +88,6 @@ export const translations = {
     askAi: "AuditAI कडेन विचारात...",
     risk: "धोको",
   },
-} as const;
+};
 
-export type T = typeof translations.en;
+export type T = Dict;

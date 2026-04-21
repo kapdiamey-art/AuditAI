@@ -11,14 +11,15 @@ import {
 import { useThemeLang } from "./ThemeLangContext";
 import { cn } from "@/lib/utils";
 
-const items = [
+type Item = { key: "dashboard" | "transactions" | "anomalies" | "reports" | "insights" | "settings"; icon: typeof LayoutDashboard; active?: boolean };
+const items: Item[] = [
   { key: "dashboard", icon: LayoutDashboard, active: true },
   { key: "transactions", icon: ArrowLeftRight },
   { key: "anomalies", icon: AlertTriangle },
   { key: "reports", icon: FileText },
   { key: "insights", icon: Sparkles },
   { key: "settings", icon: Settings },
-] as const;
+];
 
 export function Sidebar() {
   const { t } = useThemeLang();

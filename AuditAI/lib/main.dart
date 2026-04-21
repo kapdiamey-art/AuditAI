@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'theme.dart';
+import 'globals.dart';
 import 'screens/splash_screen.dart';
 
 void main() {
@@ -11,11 +12,18 @@ class AuditAiApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'AUDITAI',
-      debugShowCheckedModeBanner: false,
-      theme: AuditTheme.themeData,
-      home: const SplashScreen(),
+    return ValueListenableBuilder<ThemeMode>(
+      valueListenable: AppConfig.themeNotifier,
+      builder: (context, themeMode, _) {
+        return MaterialApp(
+          title: 'AUDITAI',
+          debugShowCheckedModeBanner: false,
+          themeMode: themeMode,
+          theme: AuditTheme.lightThemeData,
+          darkTheme: AuditTheme.themeData,
+          home: const SplashScreen(),
+        );
+      }
     );
   }
 }

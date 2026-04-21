@@ -18,22 +18,50 @@ class SplashScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const Spacer(),
-              const Icon(Icons.shield_outlined, size: 100, color: AuditTheme.goldAccent)
-              .animate(onPlay: (c) => c.repeat(reverse: true))
-              .shimmer(duration: 2.seconds, color: AuditTheme.goldLight),
+              // Unique shield + sparkle logo
+              Center(
+                child: Container(
+                  width: 140, height: 140,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: const LinearGradient(colors: [AuditTheme.goldAccent, AuditTheme.goldLight]),
+                    boxShadow: [BoxShadow(color: AuditTheme.goldAccent.withOpacity(0.4), blurRadius: 40, spreadRadius: 8)],
+                  ),
+                  child: Center(
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Icon(Icons.shield, size: 80, color: AuditTheme.primaryNavy),
+                        Positioned(top: 24, child: Icon(Icons.auto_awesome, size: 32, color: Colors.white)),
+                      ],
+                    ),
+                  ),
+                ),
+              ).animate(onPlay: (c) => c.repeat(reverse: true)).shimmer(duration: 2.seconds, color: AuditTheme.goldLight.withOpacity(0.3)),
               
-              const SizedBox(height: 24),
-              Text('AUDITAI', textAlign: TextAlign.center, style: Theme.of(context).textTheme.displayLarge?.copyWith(letterSpacing: 4, fontSize: 40))
+              const SizedBox(height: 32),
+              Text('AUDITAI', textAlign: TextAlign.center, style: Theme.of(context).textTheme.displayLarge?.copyWith(letterSpacing: 6, fontSize: 44))
               .animate().fade(duration: 800.ms).slideY(begin: 0.5, end: 0),
               
               const SizedBox(height: 12),
-              Text('Financial anomaly intelligence', textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: AuditTheme.goldAccent, letterSpacing: 1.5))
+              Text('Financial Anomaly Intelligence', textAlign: TextAlign.center, style: TextStyle(color: AuditTheme.goldAccent, letterSpacing: 2, fontSize: 15))
               .animate().fade(delay: 400.ms),
               
               const Spacer(),
-              ElevatedButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const LoginScreen())), child: const Text('Sign In')),
+              ElevatedButton(
+                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const LoginScreen())), 
+                style: ElevatedButton.styleFrom(padding: const EdgeInsets.symmetric(vertical: 18)),
+                child: const Text('Sign In', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              ),
               const SizedBox(height: 16),
-              OutlinedButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const RegisterScreen())), child: const Text('Create Account'), style: OutlinedButton.styleFrom(side: const BorderSide(color: AuditTheme.surfaceLighter))),
+              OutlinedButton(
+                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const RegisterScreen())), 
+                style: OutlinedButton.styleFrom(
+                  side: const BorderSide(color: AuditTheme.goldAccent),
+                  padding: const EdgeInsets.symmetric(vertical: 18),
+                ),
+                child: const Text('Create Account', style: TextStyle(fontSize: 18, color: AuditTheme.goldAccent)),
+              ),
               const SizedBox(height: 32),
             ],
           ),

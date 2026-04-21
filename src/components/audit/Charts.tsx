@@ -102,8 +102,8 @@ export function Heatmap() {
               </div>
             ))}
             {days.map((d) => (
-              <>
-                <div key={`l-${d}`} className="text-[10px] text-muted-foreground self-center">{d}</div>
+              <div key={d} className="contents">
+                <div className="text-[10px] text-muted-foreground self-center">{d}</div>
                 {Array.from({ length: 24 }).map((_, h) => {
                   const cell = heatmap.find((c) => c.day === d && c.hour === h)!;
                   const intensity = cell.value / max;
@@ -118,7 +118,7 @@ export function Heatmap() {
                     />
                   );
                 })}
-              </>
+              </div>
             ))}
           </div>
         </div>
